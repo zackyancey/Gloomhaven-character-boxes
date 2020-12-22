@@ -23,7 +23,7 @@ FC: $(classes_fc)
 JOTL: $(classes_jotl)
 
 # This lists all the files to build for a given class
-$(classes): %: build/stl/%_magbox_icon.stl build/stl/%_characterbox_lid.stl
+$(classes): %: build/stl/%_magbox_icon.stl build/stl/%_characterbox_lid.stl build/stl/%_characterbox_icon.stl 
 
 build/stl:
 	mkdir -p build/stl
@@ -38,7 +38,7 @@ clean:
 ## Templated scad files
 ##############################################################################
 
-build/scad/%_magbox_icon.scad build/scad/%_characterbox_lid.scad &: characters/%.json source/templates/magbox_icon.jinja.scad | build/scad
+build/scad/%_magbox_icon.scad build/scad/%_characterbox_lid.scad build/scad/%_characterbox_icon.scad &: characters/%.json source/templates/magbox_icon.jinja.scad | build/scad
 	python source/render_scad.py $<
 
 ##############################################################################
@@ -63,4 +63,7 @@ build/stl/characterbox_med.stl: source/scad/characterbox.scad | build/stl
 	$(OPENSCAD) $< -o $@ -D T=${CHARACTERBOX_MED}
 
 build/stl/%_characterbox_lid.stl: build/scad/%_characterbox_lid.scad
+	$(OPENSCAD) $< -o $@
+
+build/stl/%_characterbox_icon.stl: build/scad/%_characterbox_icon.scad
 	$(OPENSCAD) $< -o $@
