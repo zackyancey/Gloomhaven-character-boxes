@@ -17,13 +17,13 @@ classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
 classes = $(classes_gh) $(classes_fc) $(classes_jotl)
 
-all: $(classes) classbox_slim classbox_med
+all: $(classes) characterbox_slim characterbox_med
 GH: $(classes_gh)
 FC: $(classes_fc)
 JOTL: $(classes_jotl)
 
 # This lists all the files to build for a given class
-$(classes): %: build/stl/%_magbox_icon.stl
+$(classes): %: build/stl/%_magbox_icon.stl build/stl/%_characterbox_lid.stl
 
 build/stl:
 	mkdir -p build/stl
@@ -35,25 +35,32 @@ clean:
 	rm -rf build
 
 ##############################################################################
+## Templated scad files
+##############################################################################
+
+build/scad/%_magbox_icon.scad build/scad/%_characterbox_lid.scad &: characters/%.json source/templates/magbox_icon.jinja.scad | build/scad
+	python source/render_scad.py $<
+
+##############################################################################
 ## Magbox icon badges
 ##############################################################################
 
 build/stl/%_magbox_icon.stl : build/scad/%_magbox_icon.scad | build/stl
 	$(OPENSCAD) $< -o $@
 
-build/scad/%_magbox_icon.scad : characters/%.json source/templates/magbox_icon.jinja.scad | build/scad
-	python source/render_scad.py $<
-
 ##############################################################################
 ## Class Storage Boxes
 ##############################################################################
-CLASSBOX_SLIM = 10
-CLASSBOX_MED = 13
+CHARACTERBOX_SLIM = 10
+CHARACTERBOX_MED = 13
 
-classbox_slim: build/stl/classbox_slim.stl
-build/stl/classbox_slim.stl: source/scad/classbox.scad
-	$(OPENSCAD) $< -o $@ -D T=${CLASSBOX_SLIM}
+characterbox_slim: build/stl/characterbox_slim.stl
+build/stl/characterbox_slim.stl: source/scad/characterbox.scad | build/stl
+	$(OPENSCAD) $< -o $@ -D T=${CHARACTERBOX_SLIM}
 
-classbox_med: build/stl/classbox_med.stl
-build/stl/classbox_med.stl: source/scad/classbox.scad
-	$(OPENSCAD) $< -o $@ -D T=${CLASSBOX_MED}
+characterbox_med: build/stl/characterbox_med.stl
+build/stl/characterbox_med.stl: source/scad/characterbox.scad | build/stl
+	$(OPENSCAD) $< -o $@ -D T=${CHARACTERBOX_MED}
+
+build/stl/%_characterbox_lid.stl: build/scad/%_characterbox_lid.scad
+	$(OPENSCAD) $< -o $@

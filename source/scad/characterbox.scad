@@ -1,4 +1,4 @@
-source_mesh = "../../resource/stl/CharacterBox_Std_HorizontalSlots.stl";
+source_mesh = "../../resource/CharacterBox/CharacterBox_Std_HorizontalSlots.stl";
 
 //=====================================
 // Parameters
