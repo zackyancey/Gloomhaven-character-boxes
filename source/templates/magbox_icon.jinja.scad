@@ -1,5 +1,3 @@
-use <../../source/icons/{{name}}.scad>;
-
 $fn = 300;
 f=.1;
 
@@ -18,8 +16,9 @@ difference() {
         cylinder(r=r_base, h=h_base, center=true);
         _s = {{icon_scale}}/100*d_base;
 
+        linear_extrude(2.75)
         scale([_s,_s])
-        {{name}}(2.75);
+        import("../../resource/icons/{{name}}.svg", center=true);
     }
     
     translate([0,0,h_hole/2-f])
