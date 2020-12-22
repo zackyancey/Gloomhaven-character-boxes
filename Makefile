@@ -6,19 +6,20 @@ OPENSCAD=openscad
 ##############################################################################
 ## Classes
 ##############################################################################
-# TODO: Finish adding the other classes.
-# classes_gh  = 01_Brute 02_Tinkerer 03_Spellweaver 04_Scoundrel 05_Cragheart
-# classes_gh += 06_Mindthief 07_Sun 08_Three_Spears 09_Circles 10_Eclipse
-# classes_gh += 11_Squidface 12_Lightning 13_Music_Note 14_Angry_Face 15_Saw
-# classes_gh += 16_Triforce 17_Two_Mini
+classes_gh  = 01_Brute 02_Tinkerer 03_Spellweaver 04_Scoundrel 05_Cragheart
+classes_gh += 06_Mindthief 07_Sun 08_Three_Spears 09_Circles 10_Eclipse
+classes_gh += 11_Squidface 12_Lightning 13_Music_Note 14_Angry_Face 15_Saw
+classes_gh += 16_Triangles 17_Two_Mini
 
-# classes_fc = 18_Diviner
+classes_fc = 18_Diviner
 
 classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
 classes = $(classes_gh) $(classes_fc) $(classes_jotl)
 
-all: $(classes_jotl)
+all: $(classes)
+GH: $(classes_gh)
+FC: $(classes_fc)
 JOTL: $(classes_jotl)
 
 # This lists all the files to build for a given class
