@@ -17,7 +17,7 @@ classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
 classes = $(classes_gh) $(classes_fc) $(classes_jotl)
 
-all: $(classes)
+all: $(classes) classbox_slim classbox_med
 GH: $(classes_gh)
 FC: $(classes_fc)
 JOTL: $(classes_jotl)
@@ -43,3 +43,17 @@ build/stl/%_magbox_icon.stl : build/scad/%_magbox_icon.scad | build/stl
 
 build/scad/%_magbox_icon.scad : characters/%.json source/templates/magbox_icon.jinja.scad | build/scad
 	python source/render_scad.py $<
+
+##############################################################################
+## Class Storage Boxes
+##############################################################################
+CLASSBOX_SLIM = 10
+CLASSBOX_MED = 13
+
+classbox_slim: build/stl/classbox_slim.stl
+build/stl/classbox_slim.stl: source/scad/classbox.scad
+	$(OPENSCAD) $< -o $@ -D T=${CLASSBOX_SLIM}
+
+classbox_med: build/stl/classbox_med.stl
+build/stl/classbox_med.stl: source/scad/classbox.scad
+	$(OPENSCAD) $< -o $@ -D T=${CLASSBOX_MED}
