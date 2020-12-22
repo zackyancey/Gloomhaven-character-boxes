@@ -16,7 +16,8 @@ difference() {
         cylinder(r=r_base, h=h_base, center=true);
         _s = {{icon_scale}};
         __s = 1/100*d_base;
-
+        
+        color(["blue"])
         linear_extrude(2.75)
         scale([_s,_s])
         translate([{{icon_translate_x|default(0)}},{{icon_translate_y|default(0)}}])
