@@ -1,4 +1,5 @@
 {
     "name": "C_Rootwhisperer",
-    "icon_scale": ".55"
+    "icon_scale": ".55",
+    "custom": true
 }

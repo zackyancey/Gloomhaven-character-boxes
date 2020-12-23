@@ -1,4 +1,5 @@
 {
     "name": "C_Brightspark",
-    "icon_scale": "2.8"
+    "icon_scale": "2.8",
+    "custom": true
 }
