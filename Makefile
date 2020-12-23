@@ -41,6 +41,29 @@ clean:
 	rm -rf build
 
 ##############################################################################
+## Components
+##############################################################################
+BUILD_ALL=1
+ifeq ($(BUILD_ALL), 1) 
+MAGBOX_ICON=1
+CHARACTERBOX_ICON=1
+CHARACTERBOX_LID=1
+endif
+
+ifeq ($(MAGBOX_ICON), 1)
+components += build/stl/%_magbox_icon.stl
+endif
+ifeq ($(CHARACTERBOX_ICON), 1)
+components += build/stl/%_characterbox_icon.stl
+endif
+ifeq ($(MAGBOX_ICON), 1)
+components += build/stl/%_characterbox_lid.stl
+endif
+
+# This lists all the files to build for a given class
+$(classes): %: $(components)
+
+##############################################################################
 ## Templated scad files
 ##############################################################################
 
