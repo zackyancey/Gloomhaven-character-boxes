@@ -1,7 +1,7 @@
 OPENSCAD=openscad
 OPENSCAD_ARGS=--hardwarnings -q
 
-.SECONDARY: 
+.SECONDARY:
 
 
 ##############################################################################
@@ -17,7 +17,7 @@ classes_fc = 18_Diviner
 classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
 classes_custom  = C_Brightspark C_Chieftan C_Artificer C_Brewmaster \
-	C_Rootwhisperer C_Frostborn
+	C_Rootwhisperer C_Frostborn C_Amber_Aegis
 
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_custom)
 
@@ -44,7 +44,7 @@ clean:
 ## Components
 ##############################################################################
 BUILD_ALL=1
-ifeq ($(BUILD_ALL), 1) 
+ifeq ($(BUILD_ALL), 1)
 MAGBOX_ICON=1
 CHARACTERBOX_ICON=1
 CHARACTERBOX_LID=1
