@@ -3,6 +3,8 @@ OPENSCAD_ARGS=--hardwarnings -q
 
 .SECONDARY:
 
+official: GH FC JOTL
+all: official custom
 
 ##############################################################################
 ## Classes
@@ -19,10 +21,8 @@ classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 classes_custom  = C_Brightspark C_Chieftan C_Artificer C_Brewmaster \
 	C_Rootwhisperer C_Frostborn C_Amber_Aegis C_Hollowpact
 
+-include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_custom)
-
-official: GH FC JOTL
-all: official custom
 
 GH: $(classes_gh) characterbox
 FC: $(classes_fc) characterbox
@@ -56,7 +56,7 @@ endif
 ifeq ($(CHARACTERBOX_ICON), 1)
 components += build/stl/%_characterbox_icon.stl
 endif
-ifeq ($(MAGBOX_ICON), 1)
+ifeq ($(CHARACTERBOX_LID), 1)
 components += build/stl/%_characterbox_lid.stl
 endif
 
@@ -82,7 +82,7 @@ $(template_targets) &: characters/%.json $(templates) | build/scad
 ## Magbox icon badges
 ##############################################################################
 
-build/stl/%_magbox_icon.stl : build/scad/%_magbox_icon.scad | build/stl
+build/stl/%_magbox_icon.stl : build/scad/%_magbox_icon.scad resource/icons/%.svg| build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@
 
 ##############################################################################

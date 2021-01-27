@@ -8,7 +8,7 @@ icon_scale = {{icon_scale}};
 icon_file = "../../resource/icons/{{name}}.svg";
 icon_translate_x = {{icon_translate_x|default(0)}};
 icon_translate_y = {{icon_translate_y|default(0)}};
-custom = {{custom | default()| lower()}};
+custom = {{custom | default("false")| lower()}};
 
 // #######################################
 // ## Parameters
@@ -51,7 +51,7 @@ union() {
     translate([icon_translate_x, icon_translate_y])
     scale([__s,__s])
     import(icon_file, center=true);
-    
+
     color("blue")
     customring();
 }
