@@ -19,7 +19,8 @@ classes_fc = 18_Diviner
 classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
 classes_custom  = C_Brightspark C_Chieftan C_Artificer C_Brewmaster \
-	C_Rootwhisperer C_Frostborn C_Amber_Aegis C_Hollowpact C_Bombard
+	C_Rootwhisperer C_Frostborn C_Amber_Aegis C_Hollowpact C_Bombard \
+	C_Mirefoot
 
 -include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_custom)
