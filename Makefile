@@ -30,7 +30,7 @@ FC: $(classes_fc) characterbox
 JOTL: $(classes_jotl) characterbox
 custom: $(classes_custom) characterbox
 
-characterbox: characterbox_slim characterbox_med characterbox_large
+characterbox: characterbox_slim characterbox_med characterbox_large characterbox_fits_mini
 
 build/stl:
 	mkdir -p build/stl
@@ -92,6 +92,7 @@ build/stl/%_magbox_icon.stl : build/scad/%_magbox_icon.scad resource/icons/%.svg
 CHARACTERBOX_SLIM = 10
 CHARACTERBOX_MED = 13
 CHARACTERBOX_LARGE = 16.06
+CHARACTERBOX_FITS_MINI = 35
 
 characterbox_slim: build/stl/characterbox_slim.stl
 build/stl/characterbox_slim.stl: source/scad/characterbox.scad | build/stl
@@ -105,6 +106,9 @@ characterbox_large: build/stl/characterbox_large.stl
 build/stl/characterbox_large.stl: source/scad/characterbox.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@ -D T=${CHARACTERBOX_LARGE}
 
+characterbox_fits_mini: build/stl/characterbox_fits_mini.stl
+build/stl/characterbox_fits_mini.stl: source/scad/characterbox.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@ -D T=${CHARACTERBOX_FITS_MINI} -D ICON_CENTER=0
 
 build/stl/%_characterbox_lid.stl: build/scad/%_characterbox_lid.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@
