@@ -13,9 +13,7 @@ with any of the various gloomhaven class icons (or really, any arbitrary SVG.)
 In order to run this code, you need the following installed on your computer:
 
 * [OpenSCAD](https://www.openscad.org/)
-* [Python](python.org) version 3 or greater
-    * [Jinja2](https://pypi.org/project/Jinja2/) python library
-* GNU Make (should be installed by default on Linux, try
+* GNU Make (Optional, should be installed by default on Linux, try
   [here](http://gnuwin32.sourceforge.net/packages/make.htm) for windows.)
 
 ## Building
@@ -33,16 +31,37 @@ You can also run `make {target}` to build a different set of classes, eg:
 * Run with a class name (`make 01_Brute`, `make C_Artificer`) to make just that
   class.
 
-## Adding more classes
+## Building without make
 
-To add another class, the following changes need to be made:
+You can build all of the scad files just using openscad. For the most part,
+parameters that can be tweaked are at the top of the files. Each model that uses
+the character icons has a variable called `icon_file` that you can change to
+different values for the different classes. You can do this manually, or at the
+command line by running (for example):
 
-1. Add an icon at `resource/icons/{class_name}.svg`
-2. Add a JSON file at `characters/{class_name}.json`. See the readme in that
-   directory for what needs to go in that file.
-3. Add the class name to one of the lists in the makefile (probably
-   `classes_custom`)
+```
+openscad source/scad/characterbox_icon.scad -D icon_file="\"../../icons/02_Tinkerer.svg\"" -o tinkerer_icon.stl
+```
 
+Note that the paths for `icon_file` are always relative to the scad file.
+
+## Adding more classes/Using your own Icons
+
+To generate all the files for another class, you need to add an svg file with
+the class's icon to the `resources/icons` folder. The svg file needs to be the
+right size: the icon should be centered on a 100mmx100mm canvas. It's useful to
+add a 100mm diameter circle to help see what it will look like on the circular
+pieces:
+
+![](images/svg-example.png)
+
+*just be sure to delete the circle before using the file*, or openscad will
+import the circle on top of the icon. [Inkscape](https://inkscape.org/) is
+useful for editing svg files.
+
+You can build a class with an icon like this using OpenSCAD with the steps
+above. To make the class available to build with `make`, add it to one of the
+classes lists (`classes_gh`, `classes_custom`, etc.) in `Makefile`.
 
 ## Spoilers
 

@@ -16,8 +16,7 @@ if hexlify(entry.encode())[::-1] == secret:
     print(f"Success. Adding {name} as a target")
     print(f"To build it, run `make {name}`")
 
-    file2 = b64decode((spoiler_dir / "sp2.b64").read_bytes())
+    file2 = b64decode((spoiler_dir / "sp1.b64").read_bytes())
     (project_dir/"spoilers"/"spoiler_rules.mk").write_bytes(file2)
 else:
     print("Nope, that's not it.")
-

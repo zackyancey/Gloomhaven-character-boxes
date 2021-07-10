@@ -65,26 +65,11 @@ endif
 $(classes): %: $(components)
 
 ##############################################################################
-## Templated scad files
-##############################################################################
-
-templates =  source/templates/magbox_icon.jinja.scad \
-	source/templates/characterbox_icon.jinja.scad \
-	source/templates/characterbox_lid.jinja.scad
-
-template_targets =  build/scad/%_magbox_icon.scad \
-	build/scad/%_characterbox_lid.scad \
-	build/scad/%_characterbox_icon.scad
-
-$(template_targets) &: characters/%.json $(templates) | build/scad
-	python source/render_scad.py $<
-
-##############################################################################
 ## Magbox icon badges
 ##############################################################################
 
-build/stl/%_magbox_icon.stl : build/scad/%_magbox_icon.scad resource/icons/%.svg| build/stl
-	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@
+build/stl/%_magbox_icon.stl : resource/icons/%.svg source/scad/magbox_icon.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/magbox_icon.scad -D icon_file="\"../../$<"\" -o $@
 
 ##############################################################################
 ## Class Storage Boxes
@@ -110,8 +95,8 @@ characterbox_fits_mini: build/stl/characterbox_fits_mini.stl
 build/stl/characterbox_fits_mini.stl: source/scad/characterbox.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@ -D T=${CHARACTERBOX_FITS_MINI} -D ICON_CENTER=0
 
-build/stl/%_characterbox_lid.stl: build/scad/%_characterbox_lid.scad | build/stl
-	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@
+build/stl/%_characterbox_lid.stl: resource/icons/%.svg source/scad/characterbox_lid.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_lid.scad -D icon_file="\"../../$<\"" -o $@
 
-build/stl/%_characterbox_icon.stl: build/scad/%_characterbox_icon.scad | build/stl
-	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@
+build/stl/%_characterbox_icon.stl: resource/icons/%.svg source/scad/characterbox_icon.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_icon.scad -D icon_file="\"../../$<"\" -o $@
