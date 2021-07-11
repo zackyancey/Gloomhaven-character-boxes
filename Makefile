@@ -3,7 +3,7 @@ OPENSCAD_ARGS=--hardwarnings -q
 
 .SECONDARY:
 
-official: GH FC JOTL
+official: GH FC JOTL FH
 all: official custom
 
 ##############################################################################
@@ -18,16 +18,20 @@ classes_fc = 18_Diviner
 
 classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
+classes_fh = 23_Banner_Spear 24_Drifter 25_Blinkblade 26_Deathwalker \
+			 27_Boneshaper 28_Geminate
+
 classes_custom  = C_Brightspark C_Chieftan C_Artificer C_Brewmaster \
 	C_Rootwhisperer C_Frostborn C_Amber_Aegis C_Hollowpact C_Bombard \
 	C_Mirefoot C_Fire_Knight
 
 -include spoilers/spoiler_rules.mk
-classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_custom)
+classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_custom)
 
 GH: $(classes_gh) characterbox
 FC: $(classes_fc) characterbox
 JOTL: $(classes_jotl) characterbox
+FH: $(classes_fh) characterbox
 custom: $(classes_custom) characterbox
 
 characterbox: characterbox_slim characterbox_med characterbox_large characterbox_fits_mini
