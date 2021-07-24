@@ -1,5 +1,5 @@
 OPENSCAD=openscad
-OPENSCAD_ARGS=--hardwarnings -q
+OPENSCAD_ARGS=--hardwarnings -q --export-format binstl
 
 .SECONDARY:
 
