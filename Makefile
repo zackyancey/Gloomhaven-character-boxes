@@ -76,6 +76,16 @@ build/stl/%_magbox_icon.stl : resource/icons/%.svg source/scad/magbox_icon.scad 
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/magbox_icon.scad -D icon_file="\"../../$<"\" -o $@
 
 ##############################################################################
+## Amber Aegis Colony Tokens
+##############################################################################
+amber_aegis_colonies = Fire_Ant Bedrock_Termite Ghost_Bee Brown_Recluse
+D_COLONY_TOKEN = 23
+amber_aegis_colony_tokens: $(foreach c,$(amber_aegis_colonies),build/stl/$c_colony_token.stl)
+build/stl/%_colony_token.stl: resource/icons/amber_aegis_tokens/%.svg source/scad/characterbox_icon.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_icon.scad -D icon_file="\"../../$<"\" -D d_base=$(D_COLONY_TOKEN) -o $@
+
+
+##############################################################################
 ## Class Storage Boxes
 ##############################################################################
 CHARACTERBOX_SLIM = 10
