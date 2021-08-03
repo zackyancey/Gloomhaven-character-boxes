@@ -3,8 +3,11 @@ OPENSCAD_ARGS=--hardwarnings -q --export-format binstl
 
 .SECONDARY:
 
-official: GH FC JOTL FH
+official: GH 18_Diviner JOTL FH
 all: official custom
+
+vpath %.svg resource/icons
+vpath %.scad source/scad
 
 ##############################################################################
 ## Classes
@@ -28,10 +31,9 @@ classes_custom  = C_Brightspark C_Chieftan C_Artificer C_Brewmaster \
 -include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_custom)
 
-GH: $(classes_gh) characterbox
-FC: $(classes_fc) characterbox
-JOTL: $(classes_jotl) characterbox
-FH: $(classes_fh) characterbox
+GH: $(classes_gh) build/zips/Characters_GH_FC.zip characterbox
+JOTL: $(classes_jotl) build/zips/Characters_JOTL.zip characterbox
+FH: $(classes_fh) build/zips/Characters_FH.zip  characterbox
 custom: $(classes_custom) characterbox
 
 characterbox: characterbox_slim characterbox_med characterbox_large characterbox_fits_mini
@@ -39,8 +41,8 @@ characterbox: characterbox_slim characterbox_med characterbox_large characterbox
 build/stl:
 	mkdir -p build/stl
 
-build/scad:
-	mkdir -p build/scad
+build/zips:
+	mkdir -p build/zips
 
 clean:
 	rm -rf build
@@ -66,13 +68,13 @@ components += build/stl/%_characterbox_lid.stl
 endif
 
 # This lists all the files to build for a given class
-$(classes): %: $(components)
+$(classes): %: $(components) build/zips/%.zip
 
 ##############################################################################
 ## Magbox icon badges
 ##############################################################################
 
-build/stl/%_magbox_icon.stl : resource/icons/%.svg source/scad/magbox_icon.scad | build/stl
+build/stl/%_magbox_icon.stl : %.svg magbox_icon.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/magbox_icon.scad -D icon_file="\"../../$<"\" -o $@
 
 ##############################################################################
@@ -81,7 +83,7 @@ build/stl/%_magbox_icon.stl : resource/icons/%.svg source/scad/magbox_icon.scad 
 amber_aegis_colonies = Fire_Ant Bedrock_Termite Ghost_Bee Brown_Recluse
 D_COLONY_TOKEN = 23
 amber_aegis_colony_tokens: $(foreach c,$(amber_aegis_colonies),build/stl/$c_colony_token.stl)
-build/stl/%_colony_token.stl: resource/icons/amber_aegis_tokens/%.svg source/scad/characterbox_icon.scad | build/stl
+build/stl/%_colony_token.stl: amber_aegis_tokens/%.svg characterbox_icon.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_icon.scad -D icon_file="\"../../$<"\" -D d_base=$(D_COLONY_TOKEN) -o $@
 
 
@@ -109,8 +111,37 @@ characterbox_fits_mini: build/stl/characterbox_fits_mini.stl
 build/stl/characterbox_fits_mini.stl: source/scad/characterbox.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@ -D T=${CHARACTERBOX_FITS_MINI} -DICON_CENTER=false -DCLOSE_CORNER=true -DRAISE_CARDS=true
 
-build/stl/%_characterbox_lid.stl: resource/icons/%.svg source/scad/characterbox_lid.scad | build/stl
+build/stl/%_characterbox_lid.stl: %.svg characterbox_lid.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_lid.scad -D icon_file="\"../../$<\"" -o $@
 
-build/stl/%_characterbox_icon.stl: resource/icons/%.svg source/scad/characterbox_icon.scad | build/stl
+build/stl/%_characterbox_icon.stl: %.svg characterbox_icon.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_icon.scad -D icon_file="\"../../$<"\" -o $@
+
+##############################################################################
+## Character zip files
+##############################################################################
+
+build/zips/%.zip: $(components)	| build/zips
+	zip -j $@ $^
+
+build/zips/C_Amber_Aegis.zip: \
+	$(subst %,C_Amber_Aegis,$(components)) \
+	$(foreach c,$(amber_aegis_colonies),build/stl/$c_colony_token.stl) \
+	| build/zips
+	zip -j $@ $^
+
+##############################################################################
+## Game zip files
+##############################################################################
+
+build/zips/Characters_GH_FC.zip: \
+	$(foreach c,$(classes_gh),$(subst %,$c,$(components))) \
+	$(foreach c,$(classes_fc),$(subst %,$c,$(components))) \
+	| build/zips
+	zip -j $@ $^
+
+build/zips/Characters_JOTL.zip: $(foreach c,$(classes_jotl),$(subst %,$c,$(components))) | build/zips
+	zip -j $@ $^
+
+build/zips/Characters_FH.zip: $(foreach c,$(classes_fh),$(subst %,$c,$(components))) | build/zips
+	zip -j $@ $^
