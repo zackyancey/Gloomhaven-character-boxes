@@ -107,7 +107,7 @@ build/stl/characterbox_large.stl: source/scad/characterbox.scad | build/stl
 
 characterbox_fits_mini: build/stl/characterbox_fits_mini.stl
 build/stl/characterbox_fits_mini.stl: source/scad/characterbox.scad | build/stl
-	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@ -D T=${CHARACTERBOX_FITS_MINI} -D ICON_CENTER=0
+	$(OPENSCAD) $(OPENSCAD_ARGS) $< -o $@ -D T=${CHARACTERBOX_FITS_MINI} -DICON_CENTER=false -DCLOSE_CORNER=true -DRAISE_CARDS=true
 
 build/stl/%_characterbox_lid.stl: resource/icons/%.svg source/scad/characterbox_lid.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_lid.scad -D icon_file="\"../../$<\"" -o $@

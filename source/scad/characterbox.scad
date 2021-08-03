@@ -8,15 +8,22 @@ $fn =200;
 //  * Original: 16.06
 //  * Match cardboard box: 10
 //  * Minimum for JOTL/Saw: 13
-T = 35;
+T = 10;
 // Diameter of the icon hole
 Di = 13;
 // Depth of the icon hole
 Hi = 1;
 // Radius of the ramp for the token space
 R = 30;
+
 // Whether to center the icon or put it near the top
-ICON_CENTER = 0;
+ICON_CENTER = true;
+// If true, extend the wall above the bottom left corner to close the space off.
+// Useful if you want to put a mini in that corner.,
+CLOSE_CORNER = false;
+// If true, add a small raised area to the sections for storing cards. This
+// makes it a little easier to get the cards out of the tray
+RAISE_CARDS = false;
 
 //=====================================
 // Measurements
@@ -84,6 +91,29 @@ module clear_box(from_height=-1) {
         }
 }
 
+module wall(len, r=4.9) {
+    union() {
+        cube([1.5, len-r, h]);
+        cube([1.5, len, h-r]);
+        translate([0,len-r,h-r])
+        rotate([0,90,0])
+        cylinder(h=1.5,r=r);
+    }
+}
+
+module raise(x,y) {
+    r = 1;
+    h=3;
+    hull () {
+        cube([x,y,.1]);
+
+        translate([r,r,h-r]) sphere(r=r);
+        translate([x-r,r,h-r]) sphere(r=r);
+        translate([r,y-r,h-r]) sphere(r=r);
+        translate([x-r,y-r,h-r]) sphere(r=r);
+    }
+}
+
 //=====================================
 // Objects
 //=====================================
@@ -137,13 +167,15 @@ difference () {
 // ------------
 
 // Vertical wall
-translate([77.4,0,0])
-cube([1.5, 79.8, h]);
+translate([77.4,0,0]) wall(79.8);
 
 // Horizontal walls
-translate([0,54.63,0]) cube([56.73, 1.5, h]);
-translate([0,105.09,0]) cube([56.73, 1.5, h]);
-
+translate([0,105.09+1.5,0]) rotate([0,0,-90]) wall(56.73);
+if (CLOSE_CORNER) {
+    translate([0,54.63+1.5,0]) rotate([0,0,-90])  wall(78, r=0);
+} else {
+    translate([0,54.63+1.5,0]) rotate([0,0,-90])  wall(56.73);
+}
 
 // Token section
 union () {
@@ -166,6 +198,12 @@ union () {
     }
     // If we're raising up the token section, fill in the space below it.
     translate(ramp_pos) cube([49,19, max(0,h-h_ramp)]);
+}
+
+if (RAISE_CARDS) {
+    c_o = 6;
+    translate([6+c_o, 58+c_o, 0]) raise(68-(c_o*2),45-(c_o*2));
+    translate([82+c_o, 3+c_o, 0]) raise(63.5-(c_o*2),88.9-(c_o*2));
 }
 
 // End interior walls
