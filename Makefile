@@ -26,7 +26,7 @@ classes_fh = 23_Banner_Spear 24_Drifter 25_Blinkblade 26_Deathwalker \
 
 classes_custom  = C_Brightspark C_Chieftan C_Artificer C_Brewmaster \
 	C_Rootwhisperer C_Frostborn C_Amber_Aegis C_Hollowpact C_Bombard \
-	C_Mirefoot C_Fire_Knight
+	C_Mirefoot C_Fire_Knight C_Rootwhisperer_2 C_Ruinmaw
 
 -include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_custom)
