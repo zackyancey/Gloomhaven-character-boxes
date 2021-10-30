@@ -24,9 +24,14 @@ classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 classes_fh = 23_Banner_Spear 24_Drifter 25_Blinkblade 26_Deathwalker \
 			 27_Boneshaper 28_Geminate
 
-classes_custom  = C_Brightspark C_Chieftan C_Artificer C_Brewmaster \
-	C_Rootwhisperer C_Frostborn C_Amber_Aegis C_Hollowpact C_Bombard \
-	C_Mirefoot C_Fire_Knight C_Rootwhisperer_2 C_Ruinmaw
+classes_custom  = C_Flask C_Tusks C_Tools C_Brewmaster \
+	C_Rootwhisperer C_Frostborn C_Beetle C_Vortex C_Target \
+	C_Sprig C_Ladder_Axe C_Rootwhisperer_2 C_Bleeding_Claw \
+	C_Galaxy
+
+classes_cs = C_Flask C_Galaxy C_Ladder_Axe C_Sprig  C_Tusks \
+	C_Target C_Vortex C_Bleeding_Claw C_Beetle C_Tools \
+	# C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull
 
 -include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_custom)
@@ -35,6 +40,7 @@ GH: $(classes_gh) build/zips/Characters_GH_FC.zip characterbox
 JOTL: $(classes_jotl) build/zips/Characters_JOTL.zip characterbox
 FH: $(classes_fh) build/zips/Characters_FH.zip  characterbox
 custom: $(classes_custom) characterbox
+CS: $(classes_cs) build/zips/Characters_CS_custom.zip characterbox
 
 characterbox: characterbox_slim characterbox_med characterbox_large characterbox_fits_mini
 
@@ -80,10 +86,10 @@ build/stl/%_magbox_icon.stl : %.svg magbox_icon.scad | build/stl
 ##############################################################################
 ## Amber Aegis Colony Tokens
 ##############################################################################
-amber_aegis_colonies = Fire_Ant Bedrock_Termite Ghost_Bee Brown_Recluse
+beetle_colonies = Fire_Ant Bedrock_Termite Ghost_Bee Brown_Recluse
 D_COLONY_TOKEN = 23
-amber_aegis_colony_tokens: $(foreach c,$(amber_aegis_colonies),build/stl/$c_colony_token.stl)
-build/stl/%_colony_token.stl: amber_aegis_tokens/%.svg characterbox_icon.scad | build/stl
+beetle_colony_tokens: $(foreach c,$(beetle_colonies),build/stl/$c_colony_token.stl)
+build/stl/%_colony_token.stl: beetle_tokens/%.svg characterbox_icon.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_icon.scad -D icon_file="\"../../$<"\" -D d_base=$(D_COLONY_TOKEN) -o $@
 
 
@@ -124,9 +130,9 @@ build/stl/%_characterbox_icon.stl: %.svg characterbox_icon.scad | build/stl
 build/zips/%.zip: $(components)	| build/zips
 	zip -j $@ $^
 
-build/zips/C_Amber_Aegis.zip: \
-	$(subst %,C_Amber_Aegis,$(components)) \
-	$(foreach c,$(amber_aegis_colonies),build/stl/$c_colony_token.stl) \
+build/zips/C_Beetle.zip: \
+	$(subst %,C_Beetle,$(components)) \
+	$(foreach c,$(beetle_colonies),build/stl/$c_colony_token.stl) \
 	| build/zips
 	zip -j $@ $^
 
