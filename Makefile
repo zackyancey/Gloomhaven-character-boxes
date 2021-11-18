@@ -27,11 +27,12 @@ classes_fh = 23_Banner_Spear 24_Drifter 25_Blinkblade 26_Deathwalker \
 classes_custom  = C_Flask C_Tusks C_Tools C_Brewmaster \
 	C_Rootwhisperer C_Frostborn C_Beetle C_Vortex C_Target \
 	C_Sprig C_Ladder_Axe C_Rootwhisperer_2 C_Bleeding_Claw \
-	C_Galaxy
+	C_Galaxy C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull
 
 classes_cs = C_Flask C_Galaxy C_Ladder_Axe C_Sprig  C_Tusks \
 	C_Target C_Vortex C_Bleeding_Claw C_Beetle C_Tools \
-	# C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull
+	C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull \
+	C_Beetle C_Bleeding_Claw C_Tools # Add-on classes
 
 -include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_custom)
@@ -150,4 +151,7 @@ build/zips/Characters_JOTL.zip: $(foreach c,$(classes_jotl),$(subst %,$c,$(compo
 	zip -j $@ $^
 
 build/zips/Characters_FH.zip: $(foreach c,$(classes_fh),$(subst %,$c,$(components))) | build/zips
+	zip -j $@ $^
+
+build/zips/Characters_CS_custom.zip: $(foreach c,$(classes_cs),$(subst %,$c,$(components))) | build/zips
 	zip -j $@ $^
