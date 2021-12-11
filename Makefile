@@ -30,8 +30,8 @@ classes_custom  = C_Flask C_Tusks C_Tools C_Brewmaster \
 	C_Galaxy C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull
 
 classes_cs = C_Flask C_Galaxy C_Ladder_Axe C_Sprig  C_Tusks \
-	C_Target C_Vortex C_Bleeding_Claw C_Beetle C_Tools \
-	C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull \
+	C_Target C_Vortex C_Leaf C_Chained_Helmet C_Crescent_Sun \
+	C_Skull \
 	C_Beetle C_Bleeding_Claw C_Tools # Add-on classes
 
 -include spoilers/spoiler_rules.mk
