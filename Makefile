@@ -27,7 +27,8 @@ classes_fh = 23_Banner_Spear 24_Drifter 25_Blinkblade 26_Deathwalker \
 classes_custom  = C_Flask C_Tusks C_Tools C_Brewmaster \
 	C_Rootwhisperer C_Frostborn C_Beetle C_Vortex C_Target \
 	C_Sprig C_Ladder_Axe C_Rootwhisperer_2 C_Bleeding_Claw \
-	C_Galaxy C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull
+	C_Galaxy C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull \
+	C_Thorns
 
 classes_cs = C_Flask C_Galaxy C_Ladder_Axe C_Sprig  C_Tusks \
 	C_Target C_Vortex C_Leaf C_Chained_Helmet C_Crescent_Sun \
