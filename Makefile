@@ -94,6 +94,17 @@ beetle_colony_tokens: $(foreach c,$(beetle_colonies),build/stl/$c_colony_token.s
 build/stl/%_colony_token.stl: beetle_tokens/%.svg characterbox_icon.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_icon.scad -D icon_file="\"../../$<"\" -D d_base=$(D_COLONY_TOKEN) -o $@
 
+##############################################################################
+## Rootwhisperer Root Tokens
+##############################################################################
+build/stl/C_Rootwhisperer_2_root_token.stl: resource/icons/C_Rootwhisperer_2.svg rootwhisperer_token.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/rootwhisperer_token.scad -o $@
+
+build/stl/C_Rootwhisperer_2_root_token_half_a.stl: resource/icons/C_Rootwhisperer_2.svg rootwhisperer_token.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/rootwhisperer_token.scad -Dhalf=1 -o $@
+
+build/stl/C_Rootwhisperer_2_root_token_half_b.stl: resource/icons/C_Rootwhisperer_2.svg rootwhisperer_token.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/rootwhisperer_token.scad -Dhalf=2 -o $@
 
 ##############################################################################
 ## Class Storage Boxes
@@ -135,6 +146,14 @@ build/zips/%.zip: $(components)	| build/zips
 build/zips/C_Beetle.zip: \
 	$(subst %,C_Beetle,$(components)) \
 	$(foreach c,$(beetle_colonies),build/stl/$c_colony_token.stl) \
+	| build/zips
+	zip -j $@ $^
+
+build/zips/C_Rootwhisperer_2.zip: \
+	$(subst %,C_Rootwhisperer_2,$(components)) \
+	build/stl/C_Rootwhisperer_2_root_token.stl \
+	build/stl/C_Rootwhisperer_2_root_token_half_a.stl \
+	build/stl/C_Rootwhisperer_2_root_token_half_b.stl \
 	| build/zips
 	zip -j $@ $^
 
