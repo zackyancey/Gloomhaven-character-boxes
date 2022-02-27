@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="100mm"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg17343"
+   sodipodi:docname="29_Diamonds.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview17345"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.6090175"
+     inkscape:cx="197.01463"
+     inkscape:cy="211.93057"
+     inkscape:window-width="1852"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs17340" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g17318"
+       transform="matrix(2.5380856,0,0,2.5380856,-1760.0219,-1474.5021)">
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 706.42187,608.61719 3.22266,5.60156 -1.24609,-4.72656 z m 0,0"
+         id="path15530" />
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 716.64453,614.21484 3.22266,-5.59765 -1.97657,0.875 z m 0,0"
+         id="path15532" />
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 713.14453,582.45703 -11.20312,18.36328 3.79687,6.25391 3.73047,1.63672 1.76172,8.27734 1.07031,1.85547 h 1.6875 l 1.07031,-1.85547 1.76172,-8.27734 3.73438,-1.63672 3.79297,-6.25391 z m -9.4375,18.66797 9.4375,-15.61719 9.4375,15.61719 -1.71875,0.29687 -7.71875,-12.94921 -7.71875,12.94921 z m 3.5,0.6875 5.9375,-9.82422 5.9375,9.82422 -1.71875,0.29687 -4.21875,-7.07421 -4.21875,7.07421 z m 3.52734,0.6875 2.41016,-3.98438 2.41406,3.98438 -2.41406,4.00391 z m 0,0"
+         id="path15534" />
+    </g>
+  </g>
+</svg>

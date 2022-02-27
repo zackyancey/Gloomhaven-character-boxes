@@ -21,8 +21,11 @@ classes_fc = 18_Diviner
 
 classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
-classes_fh = 23_Banner_Spear 24_Drifter 25_Blinkblade 26_Deathwalker \
-			 27_Boneshaper 28_Geminate
+classes_fh = 23_Banner_Spear 24_Drifter 25_Boneshaper 26_Deathwalker \
+			 27_Blinkblade 28_Geminate \
+			 29_Diamonds 30_Meteor 31_Drill 32_Seaweed \
+			 33_Shattered_Stone 34_Snowflake 35_Trap 36_Fist \
+			 37_Moon_and_Star 38_Anemone 39_Shackles 
 
 classes_custom  = C_Flask C_Tusks C_Tools C_Brewmaster \
 	C_Rootwhisperer C_Frostborn C_Beetle C_Vortex C_Target \
