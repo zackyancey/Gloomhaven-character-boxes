@@ -43,7 +43,7 @@ classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_cu
 
 GH: $(classes_gh) build/zips/Characters_GH_FC.zip characterbox
 JOTL: $(classes_jotl) build/zips/Characters_JOTL.zip characterbox
-FH: $(classes_fh) build/zips/Characters_FH.zip  characterbox
+FH: $(classes_fh) build/zips/Characters_FH.zip build/zips/Characters_FH_zip.stl characterbox
 custom: $(classes_custom) characterbox
 CS: $(classes_cs) build/zips/Characters_CS_custom.zip characterbox
 
@@ -54,6 +54,9 @@ build/stl:
 
 build/zips:
 	mkdir -p build/zips
+
+build/extra:
+	mkdir -p build/extra
 
 clean:
 	rm -rf build
@@ -178,3 +181,13 @@ build/zips/Characters_FH.zip: $(foreach c,$(classes_fh),$(subst %,$c,$(component
 
 build/zips/Characters_CS_custom.zip: $(foreach c,$(classes_cs),$(subst %,$c,$(components))) | build/zips
 	zip -j $@ $^
+
+##############################################################################
+## Zip files hidden in an STL because thingiverse sucks
+##############################################################################
+
+build/extra/sten_fh.stl: stenography_front.scad | build/extra
+	$(OPENSCAD) --hardwarnings -q --export-format asciistl source/scad/stenography_front.scad -o $@
+
+build/zips/Characters_FH_zip.stl: build/extra/sten_fh.stl build/zips/Characters_FH.zip | build/zips
+	cat $^ >> $@
