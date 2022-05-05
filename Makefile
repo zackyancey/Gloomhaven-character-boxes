@@ -5,6 +5,7 @@ OPENSCAD_ARGS=--hardwarnings -q --export-format binstl
 
 official: GH 18_Diviner JOTL FH
 all: official custom
+boxes: GH JOTL FH CS TOA
 
 vpath %.svg resource/icons
 vpath %.scad source/scad
@@ -27,16 +28,16 @@ classes_fh = 23_Banner_Spear 24_Drifter 25_Boneshaper 26_Deathwalker \
 			 33_Shattered_Stone 34_Snowflake 35_Trap 36_Fist \
 			 37_Moon_and_Star 38_Anemone 39_Shackles 
 
-classes_custom  = C_Flask C_Tusks C_Tools C_Brewmaster \
-	C_Rootwhisperer C_Frostborn C_Beetle C_Vortex C_Target \
-	C_Sprig C_Ladder_Axe C_Rootwhisperer_2 C_Bleeding_Claw \
-	C_Galaxy C_Leaf C_Chained_Helmet C_Crescent_Sun C_Skull \
-	C_Spiked_Ring C_Three_Eyes
-
 classes_cs = C_Flask C_Galaxy C_Ladder_Axe C_Sprig  C_Tusks \
 	C_Target C_Vortex C_Leaf C_Chained_Helmet C_Crescent_Sun \
 	C_Skull \
 	C_Beetle C_Bleeding_Claw C_Tools # Add-on classes
+
+classes_toa = C_Spiked_Ring C_Three_Eyes \
+	# C_Ice_Meteor C_Storm_Cloud C_Something
+
+classes_custom = $(classes_cs) $(classes_toa) \
+	C_Brewmaster C_Rootwhisperer C_Frostborn C_Rootwhisperer_2 
 
 -include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_custom)
@@ -46,6 +47,7 @@ JOTL: $(classes_jotl) build/zips/Characters_JOTL.zip characterbox
 FH: $(classes_fh) build/zips/Characters_FH.zip build/zips/Characters_FH_zip.stl characterbox
 custom: $(classes_custom) characterbox
 CS: $(classes_cs) build/zips/Characters_CS_custom.zip characterbox
+TOA: $(classes_toa) build/zips/Characters_TOA_custom.zip characterbox
 
 characterbox: characterbox_slim characterbox_med characterbox_large characterbox_fits_mini
 
