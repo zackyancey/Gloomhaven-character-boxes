@@ -1,8 +1,10 @@
 # Gloomhaven Character 3D printables
 
-**Download the models on Thingiverse:**
-* [for official classes](https://www.thingiverse.com/thing:4808239)
-* [for custom classes](https://www.thingiverse.com/thing:4808314)
+**Download the models on Printables:**
+* [For Gloomhaven](https://www.printables.com/model/194645-gloomhaven-class-storage-boxes)
+* [For Jaws of the Lion](https://www.printables.com/model/194665-jaws-of-the-lion-class-storage-boxes)
+* [For Frosthaven](https://www.printables.com/model/194666-frosthaven-class-storage-boxes)
+* [for Custom Classes](https://www.printables.com/model/198100-gloomhaven-custom-class-storage-boxes)
 
 This is a collection of tools for generating some 3D models for 3D printing
 organizers for gloomhaven. The code is set up so that you can generate the items
