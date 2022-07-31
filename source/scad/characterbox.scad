@@ -7,8 +7,15 @@ $fn =200;
 // Thickness - how much space is avaliable inside for stacked cards.
 //  * Original: 16.06
 //  * Match cardboard box: 10
-//  * Minimum for JOTL/Saw: 13
-T = 10;
+//  * Minimum for JOTL/Saw/Most custom classes: 13
+//  * Size for the Crimson Scales heirophant: 16
+T = 15.5;
+
+// Top thickness - how much space is available for the character mat/sheet
+// Original: 3.2
+// To fit Crimson Scales classes: 4.6
+T2 = 4.4;
+
 // Diameter of the icon hole
 Di = 13;
 // Depth of the icon hole
@@ -18,9 +25,11 @@ R = 30;
 
 // Whether to center the icon or put it near the top
 ICON_CENTER = true;
+
 // If true, extend the wall above the bottom left corner to close the space off.
-// Useful if you want to put a mini in that corner.,
+// Useful if you want to put a mini or standees in that corner
 CLOSE_CORNER = false;
+
 // If true, add a small raised area to the sections for storing cards. This
 // makes it a little easier to get the cards out of the tray
 RAISE_CARDS = false;
@@ -139,12 +148,20 @@ difference () {
             import(source_mesh);
         }
 
+        // Next, extend a chunk of space above the walls for the mat/char sheets
+        clear_box(){
+            translate([0,0,h])
+            linear_extrude(height=T2)
+            projection(cut=true) translate(_pos+[0,0,-17]) import(source_mesh);
+        }
+
         // And plop the top part on pretty much unchanged
         difference () {
             clear_box(){
-                translate(_pos+[0,0,h-_h]) import(source_mesh);
+                translate(_pos+[0,0,h+T2-_h-3.2]) import(source_mesh);
             }
-            translate([-1,-1,-100]) cube([300,300,100+h-5]);
+
+            translate([-1,-1,-100]) cube([300,300,100+h+T2-2]);
         }
 
         // We need to cover up any vestiges of the old icon hole
