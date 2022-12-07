@@ -33,7 +33,8 @@ classes_cs = C_Flask C_Galaxy C_Ladder_Axe C_Sprig  C_Tusks \
 	C_Skull \
 	C_Beetle C_Bleeding_Claw C_Tools # Add-on classes
 
-classes_toa = C_Spiked_Ring C_Three_Eyes C_Ice_Meteor \ # C_Storm_Cloud C_Crystal
+classes_toa = C_Spiked_Ring C_Three_Eyes C_Ice_Meteor \
+			  C_Lightning_Ball C_Gemstone
 
 classes_custom = $(classes_cs) $(classes_toa) \
 	C_Brewmaster C_Rootwhisperer C_Frostborn C_Rootwhisperer_2 
@@ -178,4 +179,7 @@ build/zips/Characters_FH.zip: $(foreach c,$(classes_fh),$(subst %,$c,$(component
 	zip -j $@ $^
 
 build/zips/Characters_CS_custom.zip: $(foreach c,$(classes_cs),$(subst %,$c,$(components))) | build/zips
+	zip -j $@ $^
+
+build/zips/Characters_TOA_custom.zip: $(foreach c,$(classes_toa),$(subst %,$c,$(components))) | build/zips
 	zip -j $@ $^
