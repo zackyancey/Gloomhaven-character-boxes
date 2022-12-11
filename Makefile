@@ -24,9 +24,8 @@ classes_jotl = 19_Hatchet 20_Demolitionist 21_Voidwarden 22_Red_Guard
 
 classes_fh = 23_Banner_Spear 24_Drifter 25_Boneshaper 26_Deathwalker \
 			 27_Blinkblade 28_Geminate \
-			 29_Diamonds 30_Meteor 31_Drill 32_Seaweed \
-			 33_Shattered_Stone 34_Snowflake 35_Trap 36_Fist \
-			 37_Moon_and_Star 38_Anemone 39_Shackles 
+			 29_Astral 30_Meteor 31_Shards 32_Trap 33_Shackles 34_Snowflake \
+			 35_Fist 36_Kelp 37_Coral 38_Prism 39_Drill
 
 classes_cs = C_Flask C_Galaxy C_Ladder_Axe C_Sprig  C_Tusks \
 	C_Target C_Vortex C_Leaf C_Chained_Helmet C_Crescent_Sun \
