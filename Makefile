@@ -77,6 +77,7 @@ components += build/stl/%_characterbox_icon.stl
 endif
 ifeq ($(CHARACTERBOX_LID), 1)
 components += build/stl/%_characterbox_lid.stl
+components += build/stl/%_characterbox_lid_2color.stl
 endif
 
 # This lists all the files to build for a given class
@@ -139,6 +140,12 @@ build/stl/%_characterbox_lid.stl: %.svg characterbox_lid.scad | build/stl
 
 build/stl/%_characterbox_icon.stl: %.svg characterbox_icon.scad | build/stl
 	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_icon.scad -D icon_file="\"../../$<"\" -o $@
+
+build/stl/characterbox_lid_base_2color.stl: characterbox_lid.scad resource/CharacterBox/CharacterBox_Lid_Blank.stl | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_lid.scad -D icon_file="\"../../$<\""  -D multicolor=3 -o $@
+
+build/stl/%_characterbox_lid_2color.stl: %.svg build/stl/characterbox_lid_base_2color.stl characterbox_lid.scad | build/stl
+	$(OPENSCAD) $(OPENSCAD_ARGS) source/scad/characterbox_lid.scad -D icon_file="\"../../$<\""  -D multicolor=4 -o $@
 
 ##############################################################################
 ## Character zip files
