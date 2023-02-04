@@ -38,8 +38,8 @@ classes_toa = C_Spiked_Ring C_Three_Eyes C_Ice_Meteor \
 classes_custom = $(classes_cs) $(classes_toa) \
 	C_Brewmaster C_Rootwhisperer C_Frostborn C_Rootwhisperer_2 
 
--include spoilers/spoiler_rules.mk
 classes = $(classes_gh) $(classes_fc) $(classes_jotl) $(classes_fh) $(classes_custom)
+-include spoilers/spoiler_rules.mk
 
 GH: $(classes_gh) build/zips/Characters_GH_FC.zip characterbox
 JOTL: $(classes_jotl) build/zips/Characters_JOTL.zip characterbox
